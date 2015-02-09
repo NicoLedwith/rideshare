@@ -7,6 +7,7 @@ var router = express.Router();
 
 router.get('/', function (req, res) {
     res.render('index', { user : req.user });
+    console.log(req.user);
 });
 
 router.get('/register', function(req, res) {
@@ -46,7 +47,9 @@ router.get('/addride', function (req, res) {
 
 router.post('/addride', function(req, res){
     console.log("POSTED ADDRIDE");
+    console.log(req.user);
     var newRide = new Ride({
+        user: req.user.username,
         destination: req.body.destination,
         roundTrip: req.body.roundTrip,
         dateLeaving: req.body.dateLeaving,
@@ -61,7 +64,7 @@ router.post('/addride', function(req, res){
 
         return res.render("addride", {info: "Ride added!"});
     });
-    console.log("Ride saved?");
+    console.log("Ride saved");
 });
 
 router.get('/ping', function(req, res){
