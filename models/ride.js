@@ -5,7 +5,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var Ride = new Schema({
 	destination: String,
 	roundTrip: Boolean,
-	dateLeaveing: { type: Date},
+	dateLeaving: String,
 	dateReturning: String 
 });
 
