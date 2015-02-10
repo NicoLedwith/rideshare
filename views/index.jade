@@ -1,11 +1,13 @@
 extends layout
 
 block content
-  .container
+  .container(style='text-align: center')
+    h1 Welcome to CPRideShare
     if (!user)
-      a(href="/login") Login
-      br
-      a(href="/register") Register
+      p.lead
+        a(href="/login") Login
+        br
+        a(href="/register") Register
     if (user)
       p You are currently logged in as #{user.username}
       a(href="/logout") Logout

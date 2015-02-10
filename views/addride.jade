@@ -1,22 +1,35 @@
 extends layout
 
 block content
+  
   .container
-    h1 Add a Ride
-    p.lead Add where when and if it's a round trip.
-    br
-    form(role='form', action="/addride",method="post", style='max-width: 300px;')
-      .form-group
-          input.form-control(type="text", name="destination", placeholder="Enter destination")
-      .form-group
-        input.form-control(type="checkbox", name="roundTrip", id="checkboxRound")
-      .form-group
-        input.form-control(type="text", name="dateLeaving", placeholder="Date leaving: (eg. Saturday 10am)")
-      .form-group
-        input.form-control(type="text", name="dateReturning", placeholder="Date returning")
-      button.btn.btn-default(type='submit') Submit
-      &nbsp;
-      a(href='/')
-        button.btn.btn-primary(type="button") Cancel
-    br
-    h4= info
+    if user
+      .content(style='text-align: right')
+        p You are logged in as #{user.username}
+      h1 Add a Ride
+      p.lead Add where when and if it's a round trip.
+      br
+      form(role='form', action="/addride",method="post", style='max-width: 300px;')
+        .form-group
+            input.form-control(type="text", name="destination", placeholder="Enter destination")
+        .form-group
+          .checkbox
+            input(type="checkbox", name="roundTrip", id="checkboxRound")
+            | Round trip
+        .form-group
+          input.form-control(type="text", name="dateLeaving", placeholder="Date leaving: (eg. Saturday 10am)")
+        .form-group
+          input.form-control(type="text", name="dateReturning", placeholder="Date returning")
+        button.btn.btn-default(type='submit') Submit
+        &nbsp;
+        a(href='/')
+          button.btn.btn-primary(type="button") Cancel
+      br
+      h4= info
+    else
+      .content(style='text-align: center; font-size:20px')
+        h1 You are not logged in!
+        a(href="/login") Login
+        p
+        p or 
+        a(href="/register") Register

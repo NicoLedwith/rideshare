@@ -59,10 +59,10 @@ router.post('/addride', function(req, res){
     console.log(newRide);
     newRide.save(function (err) {
         if(err){
+            console.log(err);
             return res.render("addride", {info: "There was an error."});
         }
-
-        return res.render("addride", {info: "Ride added!"});
+        res.render('addride', {user: req.user, info: "Ride added!"});
     });
     console.log("Ride saved");
 });
