@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	.container
+		h1.
+			List of Rides
+		ul
+			each ride in rides
+				li
+					p Destination: #{ride.destination}
+					p Departure: #{ride.dateLeaving} 
+					if ride.roundTrip
+						p Time departing for return: #{ride.dateReturning}
+					
+

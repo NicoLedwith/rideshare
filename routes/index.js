@@ -1,9 +1,10 @@
 var express = require('express');
 var passport = require('passport');
+var mongoose = require('mongoose');
 var User = require('../models/user');
 var Ride = require('../models/ride');
 var router = express.Router();
-
+var rides = mongoose.model('ride', Ride);
 
 router.get('/', function (req, res) {
     res.render('index', { user : req.user });
@@ -47,11 +48,16 @@ router.get('/addride', function (req, res) {
 
 router.post('/addride', function(req, res){
     console.log("POSTED ADDRIDE");
+    var rt;
+    if (req.body.roundTrip)
+        rt = true;
+    else
+        rt = false;
     console.log(req.user);
     var newRide = new Ride({
         user: req.user.username,
         destination: req.body.destination,
-        roundTrip: req.body.roundTrip,
+        roundTrip: rt,
         dateLeaving: req.body.dateLeaving,
         dateReturning: req.body.dateReturning
     });
@@ -65,6 +71,17 @@ router.post('/addride', function(req, res){
         res.render('addride', {user: req.user, info: "Ride added!"});
     });
     console.log("Ride saved");
+});
+
+router.get('/ridelist', function (req, res) {
+    var Lrides = rides.find({}, function(err, data) { 
+        //console.log(err, data, data.length);
+        //console.log(data);
+        res.render('ridelist', {
+            user: req.user,
+            rides: data
+        });
+    });
 });
 
 router.get('/ping', function(req, res){

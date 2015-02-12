@@ -37,6 +37,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection},
+        // ttl: 14 * 24 * 60 * 60, // = 14 days. Default
         function(err){
             console.log(err || 'connect-mongodb setup ok');
         })

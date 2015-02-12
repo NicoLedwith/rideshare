@@ -14,7 +14,7 @@ block content
             input.form-control(type="text", name="destination", placeholder="Enter destination")
         .form-group
           .checkbox
-            input(type="checkbox", name="roundTrip", id="checkboxRound")
+            input(type="checkbox", name="roundTrip", checked=(true || undefined))
             | Round trip
         .form-group
           input.form-control(type="text", name="dateLeaving", placeholder="Date leaving: (eg. Saturday 10am)")
