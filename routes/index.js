@@ -57,9 +57,11 @@ router.post('/addride', function(req, res){
     var newRide = new Ride({
         user: req.user.username,
         destination: req.body.destination,
+        availableSeats: req.body.availableSeats,
         roundTrip: rt,
         dateLeaving: req.body.dateLeaving,
-        dateReturning: req.body.dateReturning
+        dateReturning: req.body.dateReturning,
+        isActive: true
     });
     console.log("made newRide");
     console.log(newRide);
@@ -82,10 +84,6 @@ router.get('/ridelist', function (req, res) {
             rides: data
         });
     });
-});
-
-router.get('/ping', function(req, res){
-    res.status(200).send("pong!");
 });
 
 module.exports = router;

@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.10.2",
+    "bootstrap": "*",
     "chai": "~1.8.1",
     "cookie-parser": "^1.3.3",
     "datejs": "*",
