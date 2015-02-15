@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var Ride = new Schema({
-	user: String,
+	username: String,
 	destination: String,
 	availableSeats: Number,
 	roundTrip: Boolean,

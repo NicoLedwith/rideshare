@@ -25,10 +25,11 @@ block content
         button.btn.btn-default(type='submit') Submit
         &nbsp;
         a(href='/')
-          button.btn.btn-primary(type="button") Cancel
-      br
-      .alert.alert-dismissable.alert-warning(style='max-width: 300px')
-        | #{info}
+          button.btn.btn-primary(type="button") Cancel    
+      if info
+        br
+        .alert.alert-success(style='max-width: 300px')
+          | #{info}
     else
       .content(style='text-align: center; font-size:20px')
         h1 You are not logged in!

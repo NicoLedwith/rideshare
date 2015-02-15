@@ -1,0 +1,41 @@
+extends layout
+
+block content
+	.container.text-center
+		h1.bg-warning #{user.username}
+
+		h1.
+			List of Rides
+		br
+		.row
+			each ride in rides
+				.col-md-4.col-sm-6.col-xs-12
+					if ride.roundTrip
+						.panel.panel-success
+							.panel-heading(style='text-align: center') #{ride.destination}						
+							.panel-body
+								p Departure: #{ride.dateLeaving}
+								p Spots available: #{ride.availableSeats} 
+								p Time coming back: #{ride.dateReturning}
+							.panel-footer.clearfix
+								.pull-right
+									.btn.btn-warning
+										| See Ride
+								.pull-left
+									.btn.btn-default
+										| Edit
+
+					else
+						.panel.panel-default
+							.panel-heading(style='text-align: center') #{ride.destination}
+							.panel-body
+								p Departure: #{ride.dateLeaving} 
+								p Spots available: #{ride.availableSeats}								
+								p.text-danger Not a round trip.
+							.panel-footer.clearfix
+								.pull-right
+									.btn.btn-warning
+										| See Ride
+								.pull-left
+									.btn.btn-default
+										| Edit

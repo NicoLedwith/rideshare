@@ -1,9 +1,20 @@
 var express = require('express');
+var passport = require('passport');
+var mongoose = require('mongoose');
+var User = require('../models/user');
+var Ride = require('../models/ride');
 var router = express.Router();
+var rides = mongoose.model('ride', Ride);
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/:username', function(req, res, next) {
+  var username = req.params.username;
+  User.findOne({username: username}, function (err, users) {
+    Ride.find({username: username}, function (err, rides) {
+      console.log(users);
+      res.render('users', {
+        user: users,
+        rides: rides
+      });    
+    });
+  });
 });
-
-module.exports = router;

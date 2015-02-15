@@ -43,7 +43,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/addride', function (req, res) {
-    res.render('addride', {user: req.user, info: "info stuff"});
+    res.render('addride', {user: req.user});
 });
 
 router.post('/addride', function(req, res){
@@ -55,7 +55,7 @@ router.post('/addride', function(req, res){
         rt = false;
     console.log(req.user);
     var newRide = new Ride({
-        user: req.user.username,
+        username: req.user.username,
         destination: req.body.destination,
         availableSeats: req.body.availableSeats,
         roundTrip: rt,
@@ -84,6 +84,19 @@ router.get('/ridelist', function (req, res) {
             rides: data
         });
     });
+});
+
+router.get('/users/:username', function(req, res, next) {
+  var username = req.params.username;
+  User.findOne({username: username}, function (err, users) {
+    Ride.find({username: username}, function (err, rides) {
+      console.log(users);
+      res.render('users', {
+        user: users,
+        rides: rides
+      });    
+    });
+  });
 });
 
 module.exports = router;
