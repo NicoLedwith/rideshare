@@ -1,7 +1,6 @@
 extends layout
-link(href="../node_modules/bootstrap/dist/css/bootstrap.css", rel="stylesheet")
+
 block content
-  
   .container(style='text-align: center')
     if user
       .content(style='text-align: right')
@@ -19,9 +18,24 @@ block content
             input(type="checkbox", name="roundTrip", checked=(true || false))
             | Round trip
         .form-group
-          input.form-control(type="text", name="dateLeaving", placeholder="Date leaving: (eg. Saturday 10am)")
+          script.
+            $(function() {
+            $("#dtpLeav").datetimepicker({
+              controlType: 'select',
+              timeFormat: 'hh:mm tt'
+              });
+            });
+          input#dtpLeav.form-control(type="text", name="dateLeaving", placeholder="Date leaving")
+
         .form-group
-          input.form-control(type="text", name="dateReturning", placeholder="Date returning")
+          script.
+            $(function() {
+            $("#dtpRet").datetimepicker({
+              controlType: 'select',
+              timeFormat: 'hh:mm tt'
+              });
+            });
+          input#dtpRet.form-control(type="text", name="dateReturning", placeholder="Date returning")
         button.btn.btn-default(type='submit') Submit
         &nbsp;
         a(href='/')

@@ -1,8 +1,18 @@
 extends layout
-include mixins
 
+
+          
 block content
+  script.
+      $(function() {
+      $("#dateL").datepicker();
+      $("#dateL").datepicker("show");
+      });
   .container(style='text-align: center')
+    p
+      | Stuff
+      input#dateL(type='text')
+    p #{module}
     h1 Welcome to CPRideShare
     if (!user)
       p.lead

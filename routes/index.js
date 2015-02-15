@@ -9,6 +9,7 @@ var rides = mongoose.model('ride', Ride);
 router.get('/', function (req, res) {
     res.render('index', { user : req.user });
     console.log(req.user);
+    console.log(__dirname);
 });
 
 router.get('/register', function(req, res) {
@@ -68,7 +69,7 @@ router.post('/addride', function(req, res){
     newRide.save(function (err) {
         if(err){
             console.log(err);
-            return res.render("addride", {info: "There was an error."});
+            return res.render('addride', {info: "There was an error."});
         }
         res.render('addride', {user: req.user, info: "Ride added!"});
     });
