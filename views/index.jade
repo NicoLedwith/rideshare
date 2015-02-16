@@ -1,17 +1,7 @@
 extends layout
 
-
-          
 block content
-  script.
-      $(function() {
-      $("#dateL").datepicker();
-      $("#dateL").datepicker("show");
-      });
   .container(style='text-align: center')
-    p
-      | Stuff
-      input#dateL(type='text')
     p #{module}
     h1 Welcome to CPRideShare
     if (!user)
@@ -19,8 +9,12 @@ block content
         a(href="/login") Login
         br
         a(href="/register") Register
+        br
+       
     if (user)
       p You are currently logged in as #{user.username}
       a(href="/logout") Logout
       p
       a(href="/addride") Add a Ride
+      p
+      a(href="/users/#{user.username}") Veiw your page

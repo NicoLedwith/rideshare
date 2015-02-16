@@ -7,8 +7,8 @@ var Ride = new Schema({
 	destination: String,
 	availableSeats: Number,
 	roundTrip: Boolean,
-	dateLeaving: Date,
-	dateReturning: Date,
+	dateLeaving: [],
+	dateReturning: [],
 	isActive: Boolean 
 });
 

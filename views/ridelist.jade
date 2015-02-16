@@ -1,7 +1,7 @@
 extends layout
 
 block content
-	.container
+	.container-fluid
 		h1.
 			List of Rides
 		br
@@ -12,9 +12,9 @@ block content
 						.panel.panel-success
 							.panel-heading(style='text-align: center') #{ride.destination}						
 							.panel-body
-								p Departure: #{ride.dateLeaving}
-								p Spots available: #{ride.availableSeats} 
-								p Time coming back: #{ride.dateReturning}
+								p #[text.text-info Leaving:] #{ride.dateLeaving[1]}
+								p #[text.text-info Returning:] #{ride.dateReturning[1]}
+								p #[text.text-info Spots available:] #{ride.availableSeats} 
 							.panel-footer.clearfix
 								.pull-right
 									.btn.btn-warning
@@ -24,8 +24,8 @@ block content
 						.panel.panel-default
 							.panel-heading(style='text-align: center') #{ride.destination}
 							.panel-body
-								p Departure: #{ride.dateLeaving} 
-								p Spots available: #{ride.availableSeats}								
+								p #[text.text-info Leaving:]: #{ride.dateLeaving[1]} 
+								p #[text.text-info Spots available:] #{ride.availableSeats}								
 								p.text-danger Not a round trip.
 							.panel-footer.clearfix
 								.pull-right

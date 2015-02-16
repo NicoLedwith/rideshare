@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var mongoose = require('mongoose');
+var datejs = require('datejs');
 var User = require('../models/user');
 var Ride = require('../models/ride');
 var router = express.Router();
@@ -14,6 +15,10 @@ router.get('/', function (req, res) {
 
 router.get('/register', function(req, res) {
     res.render('register', { });
+});
+
+router.get('/maptest', function (req, res) {
+    res.render('maptest');
 });
 
 router.post('/register', function(req, res) {
@@ -31,7 +36,7 @@ router.post('/register', function(req, res) {
 
 
 router.get('/login', function(req, res) {
-    res.render('login', { user : req.user });
+    res.render('login', { user : req.user,});
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
@@ -48,24 +53,25 @@ router.get('/addride', function (req, res) {
 });
 
 router.post('/addride', function(req, res){
-    console.log("POSTED ADDRIDE");
     var rt;
     if (req.body.roundTrip)
         rt = true;
     else
         rt = false;
-    console.log(req.user);
+    var dr = "";
+    if (req.body.dateReturning)
+        dr = Date.parse(req.body.dateReturning).toString("dddd MMM dS, h:mmt");
+
     var newRide = new Ride({
         username: req.user.username,
         destination: req.body.destination,
         availableSeats: req.body.availableSeats,
         roundTrip: rt,
-        dateLeaving: req.body.dateLeaving,
-        dateReturning: req.body.dateReturning,
+        dateLeaving: [req.body.dateLeaving, Date.parse(req.body.dateLeaving).toString("dddd MMM dS, h:mmt")],
+        dateReturning: [req.body.dateReturning, dr],
         isActive: true
     });
-    console.log("made newRide");
-    console.log(newRide);
+
     newRide.save(function (err) {
         if(err){
             console.log(err);
@@ -73,7 +79,6 @@ router.post('/addride', function(req, res){
         }
         res.render('addride', {user: req.user, info: "Ride added!"});
     });
-    console.log("Ride saved");
 });
 
 router.get('/ridelist', function (req, res) {
