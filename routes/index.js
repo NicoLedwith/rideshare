@@ -6,6 +6,17 @@ var User = require('../models/user');
 var Ride = require('../models/ride');
 var router = express.Router();
 var rides = mongoose.model('ride', Ride);
+// var gmaps = require('gmaps');
+// var mapsapi = require('google-maps-api')('AIzaSyBeOvkAX6ZcPTCYoOVV_QDzuGuyyyunEvc');
+
+router.get('/maptest', function (req, res) {
+    res.render('maptest');
+    // User.update({_id: req.user._id,}, { $set: {hometown: {lat:-20, lng: 15}}}, function (err, user) {
+    //     if(err)
+    //         console.log("ERROR");
+    //     res.render('maptest');
+    // });
+});
 
 router.get('/', function (req, res) {
     res.render('index', { user : req.user });
@@ -17,16 +28,29 @@ router.get('/register', function(req, res) {
     res.render('register', { });
 });
 
-router.get('/maptest', function (req, res) {
-    res.render('maptest');
-});
 
 router.post('/register', function(req, res) {
     console.log("POSTED register");
-    User.register(new User({ username : req.body.username }), req.body.password, function(err, User) {
-        if (err) {
-          return res.render("register", {info: "Sorry. That username already exists. Try again."});
-        }
+    var ht = {};
+    // if (req.body.hometown)
+    //         maps.geocode({
+    //             'address': ht,
+    //             callback: function(results, status){
+    //                 if(status == 'OK'){
+    //                     var loc = results[0];
+    //                     // ht = results[0].geometry.location.lat(), results[0].geometry.location.lng();
+    //                 console.log(ht);
+    //                 };
+    //             }
+    //         });
+    //     });
+    
+    User.register(new User({ username : req.body.username,
+        hometown: ht }),
+        req.body.password, function(err, User) {
+            if (err) {
+              return res.render("register", {info: "Sorry. That username already exists. Try again."});
+            }
 
         passport.authenticate('local')(req, res, function () {
             res.redirect('/');
@@ -52,7 +76,8 @@ router.get('/addride', function (req, res) {
     res.render('addride', {user: req.user});
 });
 
-router.post('/addride', function(req, res){
+router.post('/addride', function(req, res){    
+    console.log(req.body);
     var rt;
     if (req.body.roundTrip)
         rt = true;

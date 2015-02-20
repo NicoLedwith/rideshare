@@ -21,24 +21,29 @@ block content
                 | Round trip
 
             .form-group
-              script.
+              #dtpLeav.input-group.date
+                input.form-control(type="text", name="dateLeaving", placeholder="Date leaving")
+                span.input-group-addon
+                  span.glyphicon.glyphicon-calendar
+              script(type="text/javascript").
                 $(function() {
                 $("#dtpLeav").datetimepicker({
-                  controlType: 'select',
-                  timeFormat: 'hh:mm tt'
+                  stepping: 15
                   });
                 });
-              input#dtpLeav.form-control(type="text", name="dateLeaving", placeholder="Date leaving")
 
             .form-group
+              #dtpRet.input-group.date
+                input.form-control(type="text", name="dateReturning", placeholder="Date returning")
+                span.input-group-addon
+                  span.glyphicon.glyphicon-calendar
               script.
                 $(function() {
                 $("#dtpRet").datetimepicker({
-                  controlType: 'select',
-                  timeFormat: 'hh:mm tt'
+                  stepping: 15
                   });
                 });
-              input#dtpRet.form-control(type="text", name="dateReturning", placeholder="Date returning")
+
             button.btn.btn-default(type='submit') Submit
             &nbsp;
             a(href='/')
@@ -51,8 +56,9 @@ block content
         //- Map
         .col-lg-8
           script.
+            //- document.getElementById("p1").innerHTML = "WORKS?";
             var map;
-            var SLOcoord;
+            //- var SLOcoord;
             $(document).ready(function(){
               var map = new GMaps({
                 div: '#map',
@@ -64,7 +70,6 @@ block content
               success: function(position){
                 map.setCenter(position.coords.latitude, position.coords.longitude);
                 map.addMarker({lat:position.coords.latitude, lng:position.coords.longitude});
-                SLOcoord = map.getCenter();
               },
               error: function(error){
                 alert('Geolocation failed: '+error.message);

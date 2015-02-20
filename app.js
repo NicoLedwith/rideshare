@@ -1,4 +1,5 @@
 // dependencies
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,6 +10,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var datejs = require('datejs');
+var moment = require('moment');
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);

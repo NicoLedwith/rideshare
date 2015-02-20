@@ -1,26 +1,119 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'i', 'jquery' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.36
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info prestart rideshare@0.0.0
-6 info start rideshare@0.0.0
-7 verbose unsafe-perm in lifecycle true
-8 info rideshare@0.0.0 Failed to exec start script
-9 error rideshare@0.0.0 start: `node ./bin/www`
-9 error Exit status 8
-10 error Failed at the rideshare@0.0.0 start script.
-10 error This is most likely a problem with the rideshare package,
-10 error not with npm itself.
-10 error Tell the author that this fails on your system:
-10 error     node ./bin/www
-10 error You can get their info via:
-10 error     npm owner ls rideshare
-10 error There is likely additional logging output above.
-11 error System Darwin 14.1.0
-12 error command "node" "/usr/local/bin/npm" "start"
-13 error cwd /Users/Nico/node/rideshare
-14 error node -v v0.10.36
-15 error npm -v 1.4.28
-16 error code ELIFECYCLE
-17 verbose exit [ 1, true ]
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'jquery', null ]
+6 verbose cache add name=undefined spec="jquery" args=["jquery",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'jquery',
+7 verbose parsed url   path: 'jquery',
+7 verbose parsed url   href: 'jquery' }
+8 silly lockFile 6f2ab963-jquery jquery
+9 verbose lock jquery /Users/Nico/.npm/6f2ab963-jquery.lock
+10 silly lockFile 6f2ab963-jquery jquery
+11 silly lockFile 6f2ab963-jquery jquery
+12 verbose addNamed [ 'jquery', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 039e748d-jquery jquery@
+15 verbose lock jquery@ /Users/Nico/.npm/039e748d-jquery.lock
+16 silly addNameRange { name: 'jquery', range: '*', hasData: false }
+17 verbose request where is /jquery
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 93f8cf381485ca84
+20 verbose url raw /jquery
+21 verbose url resolving [ 'https://registry.npmjs.org/', './jquery' ]
+22 verbose url resolved https://registry.npmjs.org/jquery
+23 verbose request where is https://registry.npmjs.org/jquery
+24 info trying registry request attempt 1 at 19:50:30
+25 verbose etag "48375RKVOEPC9F6U1Q2ND4G2N"
+26 http GET https://registry.npmjs.org/jquery
+27 http 304 https://registry.npmjs.org/jquery
+28 silly registry.get cb [ 304,
+28 silly registry.get   { date: 'Fri, 20 Feb 2015 03:50:30 GMT',
+28 silly registry.get     server: 'Apache',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     'last-modified': 'Fri, 20 Feb 2015 03:50:30 GMT',
+28 silly registry.get     'cache-control': 'max-age=60',
+28 silly registry.get     etag: '"48375RKVOEPC9F6U1Q2ND4G2N"',
+28 silly registry.get     age: '0',
+28 silly registry.get     'x-served-by': 'cache-sjc3133-SJC',
+28 silly registry.get     'x-cache': 'HIT',
+28 silly registry.get     'x-cache-hits': '1',
+28 silly registry.get     'x-timer': 'S1424404230.360535,VS0,VE83',
+28 silly registry.get     vary: 'Accept',
+28 silly registry.get     'content-length': '0',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 verbose etag https://registry.npmjs.org/jquery from cache
+30 silly addNameRange number 2 { name: 'jquery', range: '*', hasData: true }
+31 silly addNameRange versions [ 'jquery',
+31 silly addNameRange   [ '1.5.1',
+31 silly addNameRange     '1.6.2',
+31 silly addNameRange     '1.6.3',
+31 silly addNameRange     '1.7.2',
+31 silly addNameRange     '1.7.3',
+31 silly addNameRange     '1.8.2',
+31 silly addNameRange     '1.8.3',
+31 silly addNameRange     '2.1.0-beta2',
+31 silly addNameRange     '2.1.0-beta3',
+31 silly addNameRange     '1.11.0-beta3',
+31 silly addNameRange     '1.11.0-rc1',
+31 silly addNameRange     '2.1.0-rc1',
+31 silly addNameRange     '1.11.0',
+31 silly addNameRange     '2.1.0',
+31 silly addNameRange     '2.1.1-beta1',
+31 silly addNameRange     '1.11.1-beta1',
+31 silly addNameRange     '2.1.1-rc1',
+31 silly addNameRange     '1.11.1-rc1',
+31 silly addNameRange     '2.1.1-rc2',
+31 silly addNameRange     '1.11.1-rc2',
+31 silly addNameRange     '2.1.1',
+31 silly addNameRange     '1.11.1',
+31 silly addNameRange     '1.9.1',
+31 silly addNameRange     '2.1.2',
+31 silly addNameRange     '1.11.2',
+31 silly addNameRange     '2.1.3' ] ]
+32 verbose addNamed [ 'jquery', '2.1.3' ]
+33 verbose addNamed [ '2.1.3', '2.1.3' ]
+34 silly lockFile 6fbd5787-jquery-2-1-3 jquery@2.1.3
+35 verbose lock jquery@2.1.3 /Users/Nico/.npm/6fbd5787-jquery-2-1-3.lock
+36 silly lockFile 38b3ffac-pmjs-org-jquery-jquery-2-1-3-tgz https://registry.npmjs.org/jquery/-/jquery-2.1.3.tgz
+37 verbose lock https://registry.npmjs.org/jquery/-/jquery-2.1.3.tgz /Users/Nico/.npm/38b3ffac-pmjs-org-jquery-jquery-2-1-3-tgz.lock
+38 verbose addRemoteTarball [ 'https://registry.npmjs.org/jquery/-/jquery-2.1.3.tgz',
+38 verbose addRemoteTarball   '6ec55204673d505d39432c5bf5cfad10e1dbad2e' ]
+39 info retry fetch attempt 1 at 19:50:30
+40 verbose fetch to= /var/folders/gx/02y9qvnx46x_scd3186529900000gq/T/npm-3223-n2_fKezx/registry.npmjs.org/jquery/-/jquery-2.1.3.tgz
+41 http GET https://registry.npmjs.org/jquery/-/jquery-2.1.3.tgz
+42 http 200 https://registry.npmjs.org/jquery/-/jquery-2.1.3.tgz
+43 silly lockFile 38b3ffac-pmjs-org-jquery-jquery-2-1-3-tgz https://registry.npmjs.org/jquery/-/jquery-2.1.3.tgz
+44 silly lockFile 38b3ffac-pmjs-org-jquery-jquery-2-1-3-tgz https://registry.npmjs.org/jquery/-/jquery-2.1.3.tgz
+45 silly lockFile 6fbd5787-jquery-2-1-3 jquery@2.1.3
+46 silly lockFile 6fbd5787-jquery-2-1-3 jquery@2.1.3
+47 silly lockFile 039e748d-jquery jquery@
+48 silly lockFile 039e748d-jquery jquery@
+49 error Error: EACCES, mkdir '/Users/Nico/.npm/jquery/2.1.3'
+49 error  { [Error: EACCES, mkdir '/Users/Nico/.npm/jquery/2.1.3']
+49 error   errno: 3,
+49 error   code: 'EACCES',
+49 error   path: '/Users/Nico/.npm/jquery/2.1.3',
+49 error   parent: 'rideshare' }
+50 error Please try running this command again as root/Administrator.
+51 error System Darwin 14.1.0
+52 error command "node" "/usr/local/bin/npm" "i" "jquery"
+53 error cwd /Users/Nico/node/rideshare
+54 error node -v v0.10.36
+55 error npm -v 1.4.28
+56 error path /Users/Nico/.npm/jquery/2.1.3
+57 error code EACCES
+58 error errno 3
+59 error stack Error: EACCES, mkdir '/Users/Nico/.npm/jquery/2.1.3'
+60 verbose exit [ 3, true ]
