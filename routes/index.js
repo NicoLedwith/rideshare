@@ -10,12 +10,14 @@ var rides = mongoose.model('ride', Ride);
 // var mapsapi = require('google-maps-api')('AIzaSyBeOvkAX6ZcPTCYoOVV_QDzuGuyyyunEvc');
 
 router.get('/maptest', function (req, res) {
-    res.render('maptest');
-    // User.update({_id: req.user._id,}, { $set: {hometown: {lat:-20, lng: 15}}}, function (err, user) {
-    //     if(err)
-    //         console.log("ERROR");
-    //     res.render('maptest');
-    // });
+        var Lrides = rides.find({}, function(err, data) { 
+        //console.log(err, data, data.length);
+        //console.log(data);
+        res.render('maptest', {
+            user: req.user,
+            rides: data
+        });
+    });
 });
 
 router.get('/', function (req, res) {
@@ -124,10 +126,49 @@ router.get('/users/:username', function(req, res, next) {
       console.log(users);
       res.render('users', {
         user: users,
-        rides: rides
+        rides: rides,
       });    
     });
   });
+});
+
+router.get('/users/:username/:rideid', function (req, res, next) {
+    var username = req.params.username;
+    var rideid = req.params.rideid;
+    console.log(username);
+    console.log(rideid);
+    User.findOne({username: username}, function (err, users) {
+        Ride.findOne({_id: rideid}, function (err, rides) {
+          // console.log(users);
+          // console.log(rides);
+          res.render('ride', {
+            user: users,
+            ride: rides,
+          });    
+        });
+      });
+});
+
+router.post('/users/:username/:rideid', function(req, res) {
+    console.log("updating");
+    var username = req.params.username;
+    console.log(username);
+    var rideid = req.params.rideid;
+    var dr = "";
+    if (req.body.dateReturning)
+        dr = Date.parse(req.body.dateReturning).toString("dddd MMM dS, h:mmt");
+    Ride.findByIdAndUpdate(rideid,
+                          {$set: {
+                                destination: req.body.destination,
+                                availableSeats: req.body.availableSeats,
+                                roundTrip: req.body.roundTrip,
+                                dateLeaving: [req.body.dateLeaving, Date.parse(req.body.dateLeaving).toString("dddd MMM dS, h:mmt")],
+                                dateReturning: [req.body.dateReturning, dr]}
+                          },
+                        function (err, docs) {
+                            res.redirect(/users/+username);         
+                    });
+    
 });
 
 module.exports = router;

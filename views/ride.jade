@@ -1,0 +1,50 @@
+extends layout
+
+block content
+    .container
+        h3.well.text-center Editing Ride
+        .panel.panel-warning
+            .panel-heading(style='text-align: center') #{ride.destination}
+            .panel-body
+                form(id='form', role='form', action="/users/#{user.username}/#{ride._id}",method="post")
+                    .form-group
+                        input.form-control(type="text", name="destination", value="#{ride.destination}")
+                    .form-group
+                        input.form-control(type="text", name="availableSeats", value="#{ride.availableSeats}")
+                    .form-group.text-center
+                        if ride.roundTrip
+                              .checkbox
+                                input(type="checkbox", name="roundTrip", checked=true)
+                                | Round trip
+                        else
+                              .checkbox
+                                input(type="checkbox", name="roundTrip", checked=false)
+                                | Round trip
+
+                    .form-group
+                      #dtpLeav.input-group.date
+                        input.form-control(type="text", name="dateLeaving", value="#{ride.dateLeaving[0]}")
+                        span.input-group-addon
+                          span.glyphicon.glyphicon-calendar
+                      script(type="text/javascript").
+                        $(function() {
+                        $("#dtpLeav").datetimepicker({
+                          stepping: 15,
+                          minDate: moment().subtract(1, 'days')
+                          });
+                        });
+
+                    .form-group
+                      #dtpRet.input-group.date
+                        input.form-control(type="text", name="dateReturning", value="#{ride.dateReturning[0]}")
+                        span.input-group-addon
+                          span.glyphicon.glyphicon-calendar
+                      script.
+                        $(function() {
+                        $("#dtpRet").datetimepicker({
+                          stepping: 15,
+                          minDate: moment().subtract(1, 'days')
+                          });
+                        });
+                    .pull-right
+                        button.btn.btn-default(type='submit') Submit

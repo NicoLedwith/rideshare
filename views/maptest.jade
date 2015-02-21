@@ -38,3 +38,62 @@ block content
         $(function () {
         $('#datetimepicker2').datetimepicker();
         });
+
+    p #{rides[0]._id}
+    a.button.btn.btn-default(href='#editRide', data-toggle='modal', data-book-id='#{rides[0]._id}') 
+      | Open Modal
+    #editRide.modal.fade(tabindex='1', role='dialog', aria-labelledby='editRideLabel', aria-hidden='true')
+      .modal-dialog
+          .modal-content
+              .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                      span(aria-hidden='true') ×
+                  h4#editRideLabel.modal-title Edit Ride
+              .modal-body
+                  form(role='form', action="/addride",method="post")
+                     .form-group
+                         input.form-control(type="text", name="destination", value='')
+                     .form-group
+                         input.form-control(type="text", name="availableSeats")
+                     .form-group
+                       .checkbox
+                         input(type="checkbox", name="roundTrip", value='' checked=(true || false))
+                         | Round trip
+
+                     .form-group
+                       #dtpLeav.input-group.date
+                         input.form-control(type="text", name="dateLeaving", value="")
+                         span.input-group-addon
+                           span.glyphicon.glyphicon-calendar
+                       script(type="text/javascript").
+                         $(function() {
+                         $("#dtpLeav").datetimepicker({
+                           stepping: 15,
+                           minDate: moment().subtract(1, 'days')
+                           });
+                         });
+
+                     .form-group
+                       #dtpRet.input-group.date
+                         input.form-control(type="text", name="dateReturning", value="")
+                         span.input-group-addon
+                           span.glyphicon.glyphicon-calendar
+                       script.
+                         $(function() {
+                         $("#dtpRet").datetimepicker({
+                           stepping: 15,
+                           minDate: moment().subtract(1, 'days')
+                           });
+                         });
+              .modal-footer
+                  button.btn.btn-default(type="button", data-dismiss='modal') Close
+                  button.btn.btn-primary(type="button") Update
+    script.
+      $('#editRide').on('show.bs.modal', function(e) {
+
+      //get data-id attribute of the clicked element
+      var bookId = $(e.relatedTarget).data('book-id');
+    
+      //populate the textbox
+      $(e.currentTarget).find('input[name="destination"]').val(bookId);
+      });

@@ -28,7 +28,8 @@ block content
               script(type="text/javascript").
                 $(function() {
                 $("#dtpLeav").datetimepicker({
-                  stepping: 15
+                  stepping: 15,
+                  minDate: moment().subtract(1, 'days')
                   });
                 });
 
@@ -40,7 +41,8 @@ block content
               script.
                 $(function() {
                 $("#dtpRet").datetimepicker({
-                  stepping: 15
+                  stepping: 15,
+                  minDate: moment().subtract(1, 'days')
                   });
                 });
 
